@@ -1,5 +1,22 @@
+sudo: required
+
 language: java
+
 jdk:
   - oraclejdk8
+
+before_install:
+  - docker build -t jaialai/jaialai-creator-server
   
-script: mvn clean install -DskipTests
+script: 
+    - mvn clean install -DskipTests
+    - docker images jaialai/jaialai-creator-server
+    
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push jaialai/jaialai-creator-server;
+    fi    
+
+services:
+  - docker
