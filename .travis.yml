@@ -5,11 +5,9 @@ language: java
 jdk:
   - oraclejdk8
 
-before_install:
-  - docker build -t jaialai/jaialai-creator-server .
-  
 script: 
     - mvn clean install -DskipTests
+    - docker build -t jaialai/jaialai-creator-server .
     - docker images jaialai/jaialai-creator-server
     
 after_success:
