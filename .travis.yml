@@ -6,7 +6,7 @@ jdk:
   - oraclejdk8
 
 before_install:
-  - docker build -t jaialai/jaialai-creator-server
+  - docker build -t jaialai/jaialai-creator-server .
   
 script: 
     - mvn clean install -DskipTests
