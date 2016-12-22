@@ -7,7 +7,7 @@ jdk:
 
 script: 
     - mvn clean install -DskipTests
-    - docker build -f src/main/docker -t jaialai/jaialai-creator-server .
+    - docker build -t jaialai/jaialai-creator-server .
     - docker images jaialai/jaialai-creator-server
     
 after_success:
